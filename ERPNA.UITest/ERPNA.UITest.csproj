@@ -1,0 +1,56 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+
+    <IsPackable>false</IsPackable>
+
+    <Configurations>Debug;Release;QA;PROD</Configurations>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Tests\Regression\**" />
+    <EmbeddedResource Remove="Tests\Regression\**" />
+    <None Remove="Tests\Regression\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Browser.Base.Framework" Version="1.6.2" />
+    <PackageReference Include="EPPlus" Version="4.5.3.3" />
+    <PackageReference Include="log4net" Version="2.0.8" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.2.0" />
+    <PackageReference Include="MySql.Data" Version="8.0.18" />
+    <PackageReference Include="NETStandard.Library" Version="2.0.3" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="NUnit" Version="3.13.1" />
+    <PackageReference Include="NUnit3TestAdapter" Version="3.15.1" />
+    <PackageReference Include="coverlet.collector" Version="3.0.2" />
+    <PackageReference Include="NunitXml.TestLogger" Version="2.1.62" />
+    <PackageReference Include="Selenium.Support" Version="3.141.0" />
+    <PackageReference Include="Selenium.WebDriver" Version="3.141.0" />
+    <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
+    <PackageReference Include="System.ValueTuple" Version="4.5.0" />
+  </ItemGroup>
+
+	<ItemGroup>
+
+		<None Update="appsettings.prod.json">
+			<CopyToOutputDirectory Condition=" '$(Configuration)'=='Prod' ">PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="appsettings.qa.json">
+			<CopyToOutputDirectory Condition=" '$(Configuration)'=='QA' ">PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="appsettings.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ERPNA.AppFramework\ERPNA.AppFramework.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="DataFiles\" />
+  </ItemGroup>
+
+</Project>
